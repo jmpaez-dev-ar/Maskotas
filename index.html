@@ -48,16 +48,143 @@
             <div class="galeria-grid">
                 <!-- Las imágenes se agregarán aquí -->
             </div>
-        </section>
-
-        <section id="contacto">
+        </section>        <section id="contacto">
             <h2>Contacto</h2>
-            <form>
-                <input type="text" placeholder="Nombre" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+            <div class="contacto-container">
+                <div class="contacto-info">
+                    <h3>¿Cómo podemos ayudarte?</h3>
+                    <p>Nos encantaría saber de ti. Envíanos un mensaje y te responderemos lo antes posible.</p>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text">
+                            <strong>Email</strong>
+                            <span>contacto@maskotas.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <strong>Teléfono</strong>
+                            <span>+54 11 1234-5678</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <strong>Dirección</strong>
+                            <span>Av. Veterinaria 123, CABA</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-text">
+                            <strong>Horarios</strong>
+                            <span>Lun-Vie: 8:00-18:00<br>Sáb: 9:00-15:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacto-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm" novalidate>                        <!-- Campo Nombre -->
+                        <div class="form-group">
+                            <label for="nombre" class="required">Nombre completo</label>
+                            <input 
+                                type="text" 
+                                id="nombre" 
+                                name="nombre" 
+                                placeholder="Ingresa tu nombre completo"
+                                required
+                                aria-describedby="nombre-error"
+                                autocomplete="name"
+                            >
+                            <span class="error-message" id="nombre-error" role="alert" aria-live="polite"></span>
+                        </div>
+                          <!-- Campo Email -->
+                        <div class="form-group">
+                            <label for="email" class="required">Correo electrónico</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="tu@email.com"
+                                required
+                                aria-describedby="email-error"
+                                autocomplete="email"
+                            >
+                            <span class="error-message" id="email-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Campo Teléfono -->
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input 
+                                type="tel" 
+                                id="telefono" 
+                                name="telefono" 
+                                placeholder="+54 11 1234-5678"
+                                aria-describedby="telefono-help"
+                                autocomplete="tel"
+                            >
+                            <small id="telefono-help" class="help-text">Opcional - para contactarte más rápido</small>
+                        </div>
+                          <!-- Campo Asunto -->
+                        <div class="form-group">
+                            <label for="asunto" class="required">Asunto</label>
+                            <select id="asunto" name="asunto" required aria-describedby="asunto-error">
+                                <option value="">Selecciona un tema</option>
+                                <option value="consulta-general">Consulta general</option>
+                                <option value="cita-veterinaria">Solicitar cita veterinaria</option>
+                                <option value="cuidado-perros">Cuidado de perros</option>
+                                <option value="cuidado-gatos">Cuidado de gatos</option>
+                                <option value="emergencia">Emergencia</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <span class="error-message" id="asunto-error" role="alert" aria-live="polite"></span>
+                        </div>
+                          <!-- Campo Mensaje -->
+                        <div class="form-group">
+                            <label for="mensaje" class="required">Mensaje</label>
+                            <textarea 
+                                id="mensaje" 
+                                name="mensaje" 
+                                placeholder="Describe tu consulta o necesidad..."
+                                required
+                                aria-describedby="mensaje-error mensaje-help"
+                                rows="5"
+                            ></textarea>
+                            <small id="mensaje-help" class="help-text">Mínimo 10 caracteres</small>
+                            <span class="error-message" id="mensaje-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Checkbox Términos -->
+                        <div class="form-group checkbox-group">
+                            <input 
+                                type="checkbox" 
+                                id="terminos" 
+                                name="terminos" 
+                                required
+                                aria-describedby="terminos-error"
+                            >                            <label for="terminos">
+                                Acepto los <a href="#" target="_blank">términos y condiciones</a> y la <a href="#" target="_blank">política de privacidad</a>
+                                <span style="color: #e74c3c; font-weight: bold;"> *</span>
+                            </label>
+                            <span class="error-message" id="terminos-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Botón Submit -->
+                        <button type="submit" class="btn-submit" aria-describedby="submit-help">
+                            <span class="btn-text">Enviar mensaje</span>
+                            <span class="btn-loading" style="display: none;">Enviando...</span>
+                        </button>
+                        <small id="submit-help" class="help-text">* Campos obligatorios</small>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 

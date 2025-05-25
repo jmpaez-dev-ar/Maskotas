@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing - Funcionalidades del Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-passed {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .test-failed {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .test-pending {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .checklist li::before {
+            content: "☐ ";
+            margin-right: 0.5rem;
+        }
+        .checklist li.completed::before {
+            content: "✅ ";
+        }
+        .checklist li.failed::before {
+            content: "❌ ";
+        }
+        .instructions {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .test-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        .test-link:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Testing Manual - Formulario de Contacto Maskotas</h1>
+    
+    <div class="instructions">
+        <h3>📋 Instrucciones de Testing</h3>
+        <p><strong>Objetivo:</strong> Verificar que todas las funcionalidades del formulario de contacto funcionen correctamente.</p>
+        <p><strong>Método:</strong> Sigue cada test paso a paso y marca como completado cuando funcione correctamente.</p>
+        <a href="../index.html" class="test-link" target="_blank">🔗 Abrir Sitio Web para Testing</a>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🎯 Test 1: Validación en Tiempo Real</h3>
+        <ul class="checklist">
+            <li>Ir al formulario de contacto (sección #contacto)</li>
+            <li>Escribir en el campo "Nombre" menos de 2 caracteres → debe mostrar error</li>
+            <li>Escribir un nombre válido → debe mostrar estado de éxito (verde)</li>
+            <li>Escribir email inválido (sin @) → debe mostrar error</li>
+            <li>Escribir email válido → debe mostrar estado de éxito</li>
+            <li>Escribir en mensaje menos de 10 caracteres → debe mostrar error</li>
+            <li>Los errores deben aparecer al salir del campo (blur)</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>💾 Test 2: Auto-guardado</h3>
+        <ul class="checklist">
+            <li>Llenar parcialmente el formulario (nombre, email)</li>
+            <li>Esperar 2-3 segundos → debe aparecer indicador "Guardando borrador..."</li>
+            <li>Refrescar la página (F5)</li>
+            <li>Volver al formulario → los datos deben estar recuperados</li>
+            <li>Debe aparecer mensaje "Se recuperaron datos del formulario..."</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>⌨️ Test 3: Atajos de Teclado</h3>
+        <ul class="checklist">
+            <li>Presionar Alt + C → debe navegar suavemente al formulario</li>
+            <li>Llenar el formulario completamente</li>
+            <li>Presionar Ctrl + Enter → debe enviar el formulario</li>
+            <li>Presionar Ctrl + Alt + R → debe preguntar si reiniciar</li>
+            <li>Usar Ctrl + ↑/↓ dentro del formulario → debe navegar entre campos</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🧠 Test 4: Autocompletado Inteligente</h3>
+        <ul class="checklist">
+            <li>Seleccionar "Consulta general" en asunto → mensaje debe auto-completarse</li>
+            <li>Seleccionar "Emergencia" → debe agregar texto de emergencia</li>
+            <li>Seleccionar "Cita veterinaria" → debe agregar texto de cita</li>
+            <li>El cursor debe posicionarse al final del texto</li>
+            <li>Solo debe funcionar si el campo mensaje está vacío</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>📊 Test 5: Indicador de Progreso</h3>
+        <ul class="checklist">
+            <li>La barra de progreso debe aparecer arriba del botón enviar</li>
+            <li>Debe estar en 0% inicialmente (sin color)</li>
+            <li>Debe aumentar al completar campos requeridos</li>
+            <li>Debe cambiar de azul → naranja → verde según progreso</li>
+            <li>Debe llegar a 100% cuando todos los campos requeridos estén válidos</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🔄 Test 6: Contador de Caracteres</h3>
+        <ul class="checklist">
+            <li>Escribir en el campo mensaje → debe aparecer contador "X / 1000 caracteres"</li>
+            <li>Con más de 800 caracteres → debe volverse naranja (caution)</li>
+            <li>Con más de 900 caracteres → debe volverse rojo y parpadear (warning)</li>
+            <li>El contador debe actualizarse en tiempo real</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🌐 Test 7: Simulación de Conectividad</h3>
+        <ul class="checklist">
+            <li>Abrir DevTools → Application → Service Workers</li>
+            <li>Marcar "Offline" → debe aparecer mensaje de sin conexión</li>
+            <li>Desmarcar "Offline" → debe aparecer mensaje de conexión restaurada</li>
+            <li>Los mensajes deben ser informativos y desaparecer automáticamente</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🔒 Test 8: Protección contra Pérdida</h3>
+        <ul class="checklist">
+            <li>Llenar parcialmente el formulario</li>
+            <li>Intentar cerrar la pestaña → debe aparecer confirmación</li>
+            <li>Enviar formulario exitosamente</li>
+            <li>Intentar cerrar pestaña → NO debe aparecer confirmación</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>♿ Test 9: Accesibilidad</h3>
+        <ul class="checklist">
+            <li>Navegar solo con Tab → todos los elementos deben ser accesibles</li>
+            <li>Los campos con error deben tener outline visible al recibir foco</li>
+            <li>Labels deben estar asociados correctamente con inputs</li>
+            <li>Mensajes de error deben ser anunciados por lectores de pantalla</li>
+            <li>Campos requeridos deben tener asterisco (*) visible</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>📱 Test 10: Responsividad</h3>
+        <ul class="checklist">
+            <li>Cambiar a vista móvil (DevTools → Device Mode)</li>
+            <li>El formulario debe cambiar a una columna</li>
+            <li>Los botones deben ser más grandes en móvil</li>
+            <li>Los mensajes deben ajustarse al ancho de pantalla</li>
+            <li>Touch interactions deben funcionar correctamente</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>🎨 Test 11: Animaciones</h3>
+        <ul class="checklist">
+            <li>Recargar página → los campos deben aparecer con animación escalonada</li>
+            <li>Hacer click en campos → debe haber efecto de foco suave</li>
+            <li>Mensajes de notificación → deben deslizarse desde la derecha</li>
+            <li>Botón de envío → debe mostrar spinner animado durante carga</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>💡 Test 12: Tips de Usabilidad</h3>
+        <ul class="checklist">
+            <li>Primera visita → deben aparecer tips después de 5 segundos</li>
+            <li>Tips deben explicar atajos de teclado disponibles</li>
+            <li>Tips deben desaparecer automáticamente después de 4 segundos</li>
+            <li>En sesiones posteriores → tips no deben aparecer</li>
+        </ul>
+    </div>
+
+    <div class="test-section test-pending">
+        <h3>✅ Test 13: Envío del Formulario</h3>
+        <ul class="checklist">
+            <li>Llenar formulario completamente con datos válidos</li>
+            <li>Marcar checkbox de términos y condiciones</li>
+            <li>Hacer click en "Enviar mensaje"</li>
+            <li>Botón debe mostrar "Enviando..." con spinner</li>
+            <li>Después de 2 segundos → mensaje de éxito</li>
+            <li>Formulario debe limpiarse automáticamente</li>
+            <li>Datos de localStorage deben eliminarse</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>📊 Resumen de Testing</h2>
+    <div id="test-summary">
+        <p><strong>Tests Completados:</strong> <span id="completed-count">0</span> / 13</p>
+        <p><strong>Tests Fallidos:</strong> <span id="failed-count">0</span> / 13</p>
+        <p><strong>Progreso:</strong> <span id="progress-percent">0%</span></p>
+    </div>
+
+    <script>
+        // Funcionalidad para marcar tests como completados
+        document.addEventListener('DOMContentLoaded', function() {
+            const checklistItems = document.querySelectorAll('.checklist li');
+            
+            checklistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.classList.contains('completed')) {
+                        this.classList.remove('completed');
+                        this.classList.add('failed');
+                    } else if (this.classList.contains('failed')) {
+                        this.classList.remove('failed');
+                    } else {
+                        this.classList.add('completed');
+                    }
+                    updateTestSummary();
+                    updateSectionStatus();
+                });
+            });
+            
+            function updateTestSummary() {
+                const completed = document.querySelectorAll('.checklist li.completed').length;
+                const failed = document.querySelectorAll('.checklist li.failed').length;
+                const total = checklistItems.length;
+                const progress = Math.round((completed / total) * 100);
+                
+                document.getElementById('completed-count').textContent = completed;
+                document.getElementById('failed-count').textContent = failed;
+                document.getElementById('progress-percent').textContent = progress + '%';
+            }
+            
+            function updateSectionStatus() {
+                const sections = document.querySelectorAll('.test-section');
+                sections.forEach(section => {
+                    const items = section.querySelectorAll('.checklist li');
+                    const completed = section.querySelectorAll('.checklist li.completed');
+                    const failed = section.querySelectorAll('.checklist li.failed');
+                    
+                    section.classList.remove('test-passed', 'test-failed', 'test-pending');
+                    
+                    if (completed.length === items.length) {
+                        section.classList.add('test-passed');
+                    } else if (failed.length > 0) {
+                        section.classList.add('test-failed');
+                    } else {
+                        section.classList.add('test-pending');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
