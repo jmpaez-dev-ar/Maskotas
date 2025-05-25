@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Funcionalidades - Maskotas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Test de Funcionalidades - Maskotas</h1>
+    <p>Esta página verifica que todas las funcionalidades del sitio web funcionen correctamente.</p>
+
+    <div class="test-section">
+        <h2>📋 Tests Automatizados</h2>
+        <button onclick="runAllTests()">Ejecutar Todos los Tests</button>
+        <button onclick="testContactForm()">Test Formulario de Contacto</button>
+        <button onclick="testGallery()">Test Galería</button>
+        <button onclick="testUtils()">Test Utilidades</button>
+        <button onclick="clearResults()">Limpiar Resultados</button>
+    </div>
+
+    <div id="results"></div>
+
+    <div class="test-section">
+        <h2>🔗 Enlaces de Navegación</h2>
+        <button onclick="window.open('index.html', '_blank')">Abrir Sitio Principal</button>
+        <button onclick="window.open('docs/testing-galeria.html', '_blank')">Tests Manuales de Galería</button>
+    </div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        function addResult(test, status, message) {
+            const div = document.createElement('div');
+            div.className = `test-result ${status}`;
+            div.innerHTML = `<strong>${test}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        function clearResults() {
+            results.innerHTML = '';
+        }
+
+        function testUtils() {
+            addResult('Utils Object', 'success', 'Iniciando test de utilidades...');
+            
+            // Cargar el script principal
+            const script = document.createElement('script');
+            script.src = 'js/main.js';
+            script.onload = function() {
+                try {
+                    // Test 1: Verificar que Utils existe
+                    if (typeof Utils !== 'undefined') {
+                        addResult('Utils - Definición', 'success', 'Objeto Utils definido correctamente');
+                    } else {
+                        addResult('Utils - Definición', 'error', 'Objeto Utils no está definido');
+                        return;
+                    }
+
+                    // Test 2: Verificar función debounce
+                    if (typeof Utils.debounce === 'function') {
+                        addResult('Utils - Debounce', 'success', 'Función debounce disponible');
+                        
+                        // Test funcional de debounce
+                        let counter = 0;
+                        const debouncedFunc = Utils.debounce(() => counter++, 100);
+                        debouncedFunc();
+                        debouncedFunc();
+                        debouncedFunc();
+                        
+                        setTimeout(() => {
+                            if (counter === 1) {
+                                addResult('Utils - Debounce Functional', 'success', 'Debounce funciona correctamente');
+                            } else {
+                                addResult('Utils - Debounce Functional', 'error', `Debounce falló. Counter: ${counter}`);
+                            }
+                        }, 200);
+                    } else {
+                        addResult('Utils - Debounce', 'error', 'Función debounce no disponible');
+                    }
+
+                    // Test 3: Verificar función lazyLoadImages
+                    if (typeof Utils.lazyLoadImages === 'function') {
+                        addResult('Utils - LazyLoad', 'success', 'Función lazyLoadImages disponible');
+                    } else {
+                        addResult('Utils - LazyLoad', 'error', 'Función lazyLoadImages no disponible');
+                    }
+
+                } catch (error) {
+                    addResult('Utils - Error', 'error', `Error al cargar script: ${error.message}`);
+                }
+            };
+            script.onerror = function() {
+                addResult('Utils - Script Load', 'error', 'No se pudo cargar el script principal');
+            };
+            document.head.appendChild(script);
+        }
+
+        function testContactForm() {
+            addResult('Formulario de Contacto', 'success', 'Verificando funcionalidades del formulario...');
+            
+            // Verificar que el HTML del formulario existe
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    // Test elementos del formulario
+                    const form = doc.getElementById('contactForm');
+                    if (form) {
+                        addResult('Formulario - HTML', 'success', 'Formulario existe en el HTML');
+                    } else {
+                        addResult('Formulario - HTML', 'error', 'Formulario no encontrado');
+                        return;
+                    }
+
+                    // Test campos requeridos
+                    const requiredFields = ['nombre', 'email', 'asunto', 'mensaje', 'terminos'];
+                    let missingFields = [];
+                    
+                    requiredFields.forEach(fieldId => {
+                        if (!doc.getElementById(fieldId)) {
+                            missingFields.push(fieldId);
+                        }
+                    });
+
+                    if (missingFields.length === 0) {
+                        addResult('Formulario - Campos', 'success', 'Todos los campos requeridos están presentes');
+                    } else {
+                        addResult('Formulario - Campos', 'error', `Campos faltantes: ${missingFields.join(', ')}`);
+                    }
+
+                    // Test atributos de accesibilidad
+                    const emailInput = doc.getElementById('email');
+                    if (emailInput && emailInput.hasAttribute('aria-describedby')) {
+                        addResult('Formulario - Accesibilidad', 'success', 'Atributos ARIA presentes');
+                    } else {
+                        addResult('Formulario - Accesibilidad', 'error', 'Faltan atributos de accesibilidad');
+                    }
+                })
+                .catch(error => {
+                    addResult('Formulario - Load', 'error', `Error al cargar HTML: ${error.message}`);
+                });
+        }
+
+        function testGallery() {
+            addResult('Galería', 'success', 'Verificando funcionalidades de la galería...');
+            
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    // Test sección galería
+                    const galeriaSection = doc.getElementById('galeria');
+                    if (galeriaSection) {
+                        addResult('Galería - HTML', 'success', 'Sección galería existe');
+                    } else {
+                        addResult('Galería - HTML', 'error', 'Sección galería no encontrada');
+                        return;
+                    }
+
+                    // Test filtros
+                    const filtros = doc.querySelectorAll('.filtro-btn');
+                    if (filtros.length > 0) {
+                        addResult('Galería - Filtros', 'success', `${filtros.length} filtros encontrados`);
+                    } else {
+                        addResult('Galería - Filtros', 'error', 'No se encontraron filtros');
+                    }
+
+                    // Test elementos de galería
+                    const galeriaItems = doc.querySelectorAll('.galeria-item');
+                    if (galeriaItems.length > 0) {
+                        addResult('Galería - Items', 'success', `${galeriaItems.length} elementos de galería encontrados`);
+                    } else {
+                        addResult('Galería - Items', 'error', 'No se encontraron elementos de galería');
+                    }
+
+                    // Test imágenes con lazy loading
+                    const lazyImages = doc.querySelectorAll('img[loading="lazy"]');
+                    if (lazyImages.length > 0) {
+                        addResult('Galería - Lazy Loading', 'success', `${lazyImages.length} imágenes con lazy loading`);
+                    } else {
+                        addResult('Galería - Lazy Loading', 'error', 'No hay imágenes con lazy loading');
+                    }
+
+                    // Test atributos alt
+                    let imagesWithoutAlt = 0;
+                    galeriaItems.forEach(item => {
+                        const img = item.querySelector('img');
+                        if (img && !img.hasAttribute('alt')) {
+                            imagesWithoutAlt++;
+                        }
+                    });
+
+                    if (imagesWithoutAlt === 0) {
+                        addResult('Galería - Accesibilidad', 'success', 'Todas las imágenes tienen atributo alt');
+                    } else {
+                        addResult('Galería - Accesibilidad', 'error', `${imagesWithoutAlt} imágenes sin atributo alt`);
+                    }
+                })
+                .catch(error => {
+                    addResult('Galería - Load', 'error', `Error al cargar HTML: ${error.message}`);
+                });
+        }
+
+        function runAllTests() {
+            clearResults();
+            addResult('Suite de Tests', 'success', 'Iniciando todos los tests...');
+            
+            setTimeout(() => testUtils(), 100);
+            setTimeout(() => testContactForm(), 500);
+            setTimeout(() => testGallery(), 1000);
+            
+            setTimeout(() => {
+                addResult('Suite Completa', 'success', 'Todos los tests ejecutados. Revisa los resultados arriba.');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

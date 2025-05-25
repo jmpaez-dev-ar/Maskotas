@@ -41,23 +41,254 @@
                     <p>Servicios veterinarios profesionales.</p>
                 </div>
             </div>
-        </section>
-
-        <section id="galeria">
+        </section>        <section id="galeria">
             <h2>Galería</h2>
-            <div class="galeria-grid">
-                <!-- Las imágenes se agregarán aquí -->
+            <p class="galeria-intro">Conoce a algunas de las mascotas que hemos cuidado con amor y dedicación</p>
+            
+            <div class="galeria-filtros">
+                <button class="filtro-btn active" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="perros">Perros</button>
+                <button class="filtro-btn" data-filtro="gatos">Gatos</button>
+                <button class="filtro-btn" data-filtro="otros">Otros</button>
             </div>
-        </section>
-
-        <section id="contacto">
+            
+            <div class="galeria-grid">
+                <div class="galeria-item" data-categoria="perros">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=300&fit=crop&crop=center" 
+                         alt="Golden Retriever feliz jugando en el parque" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Max</h3>
+                        <p>Golden Retriever</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Max">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="gatos">
+                    <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=300&fit=crop&crop=center" 
+                         alt="Gato persa descansando cómodamente" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Luna</h3>
+                        <p>Gato Persa</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Luna">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="perros">
+                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=300&fit=crop&crop=center" 
+                         alt="Pastor Alemán atento y leal" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Rex</h3>
+                        <p>Pastor Alemán</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Rex">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="gatos">
+                    <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=400&h=300&fit=crop&crop=center" 
+                         alt="Gato Maine Coon majestuoso" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Whiskers</h3>
+                        <p>Maine Coon</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Whiskers">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="perros">
+                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop&crop=center" 
+                         alt="Beagle cachorro curioso explorando" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Buddy</h3>
+                        <p>Beagle</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Buddy">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="otros">
+                    <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&h=300&fit=crop&crop=center" 
+                         alt="Conejo doméstico adorable" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Coco</h3>
+                        <p>Conejo Holland Lop</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Coco">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="gatos">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=300&fit=crop&crop=center" 
+                         alt="Gato siamés elegante y distinguido" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Milo</h3>
+                        <p>Siamés</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Milo">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="perros">
+                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop&crop=center" 
+                         alt="Labrador chocolate amigable" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Chocolate</h3>
+                        <p>Labrador</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Chocolate">Ver más</button>
+                    </div>
+                </div>
+                
+                <div class="galeria-item" data-categoria="otros">
+                    <img src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=400&h=300&fit=crop&crop=center" 
+                         alt="Loro colorido y parlanchín" 
+                         loading="lazy">
+                    <div class="galeria-overlay">
+                        <h3>Paco</h3>
+                        <p>Loro Guacamayo</p>
+                        <button class="ver-mas" aria-label="Ver más detalles de Paco">Ver más</button>
+                    </div>
+                </div>
+            </div>
+        </section><section id="contacto">
             <h2>Contacto</h2>
-            <form>
-                <input type="text" placeholder="Nombre" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+            <div class="contacto-container">
+                <div class="contacto-info">
+                    <h3>¿Cómo podemos ayudarte?</h3>
+                    <p>Nos encantaría saber de ti. Envíanos un mensaje y te responderemos lo antes posible.</p>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text">
+                            <strong>Email</strong>
+                            <span>contacto@maskotas.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <strong>Teléfono</strong>
+                            <span>+54 11 1234-5678</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <strong>Dirección</strong>
+                            <span>Av. Veterinaria 123, CABA</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-text">
+                            <strong>Horarios</strong>
+                            <span>Lun-Vie: 8:00-18:00<br>Sáb: 9:00-15:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacto-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm" novalidate>                        <!-- Campo Nombre -->
+                        <div class="form-group">
+                            <label for="nombre" class="required">Nombre completo</label>
+                            <input 
+                                type="text" 
+                                id="nombre" 
+                                name="nombre" 
+                                placeholder="Ingresa tu nombre completo"
+                                required
+                                aria-describedby="nombre-error"
+                                autocomplete="name"
+                            >
+                            <span class="error-message" id="nombre-error" role="alert" aria-live="polite"></span>
+                        </div>
+                          <!-- Campo Email -->
+                        <div class="form-group">
+                            <label for="email" class="required">Correo electrónico</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="tu@email.com"
+                                required
+                                aria-describedby="email-error"
+                                autocomplete="email"
+                            >
+                            <span class="error-message" id="email-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Campo Teléfono -->
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input 
+                                type="tel" 
+                                id="telefono" 
+                                name="telefono" 
+                                placeholder="+54 11 1234-5678"
+                                aria-describedby="telefono-help"
+                                autocomplete="tel"
+                            >
+                            <small id="telefono-help" class="help-text">Opcional - para contactarte más rápido</small>
+                        </div>
+                          <!-- Campo Asunto -->
+                        <div class="form-group">
+                            <label for="asunto" class="required">Asunto</label>
+                            <select id="asunto" name="asunto" required aria-describedby="asunto-error">
+                                <option value="">Selecciona un tema</option>
+                                <option value="consulta-general">Consulta general</option>
+                                <option value="cita-veterinaria">Solicitar cita veterinaria</option>
+                                <option value="cuidado-perros">Cuidado de perros</option>
+                                <option value="cuidado-gatos">Cuidado de gatos</option>
+                                <option value="emergencia">Emergencia</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <span class="error-message" id="asunto-error" role="alert" aria-live="polite"></span>
+                        </div>
+                          <!-- Campo Mensaje -->
+                        <div class="form-group">
+                            <label for="mensaje" class="required">Mensaje</label>
+                            <textarea 
+                                id="mensaje" 
+                                name="mensaje" 
+                                placeholder="Describe tu consulta o necesidad..."
+                                required
+                                aria-describedby="mensaje-error mensaje-help"
+                                rows="5"
+                            ></textarea>
+                            <small id="mensaje-help" class="help-text">Mínimo 10 caracteres</small>
+                            <span class="error-message" id="mensaje-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Checkbox Términos -->
+                        <div class="form-group checkbox-group">
+                            <input 
+                                type="checkbox" 
+                                id="terminos" 
+                                name="terminos" 
+                                required
+                                aria-describedby="terminos-error"
+                            >                            <label for="terminos">
+                                Acepto los <a href="#" target="_blank">términos y condiciones</a> y la <a href="#" target="_blank">política de privacidad</a>
+                                <span style="color: #e74c3c; font-weight: bold;"> *</span>
+                            </label>
+                            <span class="error-message" id="terminos-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        
+                        <!-- Botón Submit -->
+                        <button type="submit" class="btn-submit" aria-describedby="submit-help">
+                            <span class="btn-text">Enviar mensaje</span>
+                            <span class="btn-loading" style="display: none;">Enviando...</span>
+                        </button>
+                        <small id="submit-help" class="help-text">* Campos obligatorios</small>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 
