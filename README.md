@@ -19,9 +19,18 @@ maskotas/
 ├── js/
 │   └── main.js         # Funcionalidad JavaScript
 ├── img/
-│   └── (imágenes)      # Carpeta para imágenes del sitio
+│   ├── README.md       # Guía de organización de imágenes
+│   └── galeria/        # Imágenes para la galería
+│       ├── perros/     # Imágenes de perros
+│       ├── gatos/      # Imágenes de gatos
+│       └── otros/      # Otras mascotas
 ├── docs/
-│   └── (documentación) # Wireframes, notas y documentación
+│   ├── funcionalidades-contacto.md     # Documentación del formulario
+│   ├── galeria-implementacion.md       # Documentación de la galería
+│   ├── implementacion-completada.md    # Estado del proyecto
+│   ├── notas-desarrollo.md             # Notas técnicas
+│   ├── testing-manual.html            # Tests manuales
+│   └── wireframes.md                  # Diseños y wireframes
 └── README.md           # Este archivo
 ```
 
@@ -30,10 +39,21 @@ maskotas/
 ### 🎯 Funcionalidades Principales
 - **Diseño Responsivo**: Adaptable a dispositivos móviles, tablets y escritorio
 - **Navegación Suave**: Scroll suave entre secciones con animaciones
+- **Galería Interactiva**: Sistema completo de galería con filtros y lightbox
 - **Formulario Avanzado**: Sistema completo de contacto con validación inteligente
 - **Auto-guardado**: Los datos del formulario se guardan automáticamente
 - **Animaciones Fluidas**: Efectos visuales modernos y suaves
 - **Accesibilidad**: Cumple con estándares WCAG para inclusión digital
+
+### 🖼️ Funcionalidades de la Galería
+- **Filtros Dinámicos**: Categorización por tipo de mascota (Perros, Gatos, Otros)
+- **Lightbox Modal**: Vista detallada con información completa de cada mascota
+- **Lazy Loading**: Carga perezosa de imágenes para mejor performance
+- **Integración con Contacto**: Solicitud directa de citas desde la galería
+- **Animaciones de Entrada**: Elementos aparecen suavemente al hacer scroll
+- **Navegación por Teclado**: Accesibilidad completa con Escape y Tab
+- **Responsive Design**: Experiencia optimizada en todos los dispositivos
+- **Efectos Hover**: Transformaciones elegantes en desktop
 
 ### ✨ Funcionalidades del Formulario de Contacto
 - **Validación en Tiempo Real**: Feedback instantáneo mientras escribes

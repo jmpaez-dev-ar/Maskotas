@@ -14,10 +14,18 @@ img/
 │   ├── perros.jpg
 │   ├── gatos.jpg
 │   └── veterinaria.jpg
-├── galeria/
-│   ├── galeria-01.jpg
-│   ├── galeria-02.jpg
-│   └── ...
+├── galeria/                  # ✅ IMPLEMENTADO
+│   ├── perros/              # Imágenes de perros
+│   │   ├── golden-retriever.jpg
+│   │   ├── pastor-aleman.jpg
+│   │   └── labrador.jpg
+│   ├── gatos/               # Imágenes de gatos
+│   │   ├── persa.jpg
+│   │   ├── maine-coon.jpg
+│   │   └── siames.jpg
+│   └── otros/               # Otras mascotas
+│       ├── conejo.jpg
+│       └── loro.jpg
 ├── heroes/
 │   └── hero-banner.jpg
 └── icons/
@@ -25,6 +33,22 @@ img/
     ├── email.svg
     └── location.svg
 ```
+
+## Estado Actual de Implementación
+
+### ✅ Galería Completada
+- **Estructura de carpetas**: Creada y organizada
+- **Imágenes de demostración**: Usando Unsplash API para alta calidad
+- **Categorización**: Perros, Gatos y Otras mascotas
+- **Optimización**: Lazy loading implementado para performance
+
+### 📝 Nota sobre Imágenes Actuales
+Las imágenes de la galería actualmente utilizan URLs de Unsplash para demostración. Para producción, se recomienda:
+
+1. **Descargar y optimizar** las imágenes seleccionadas
+2. **Guardarlas** en las carpetas correspondientes (`perros/`, `gatos/`, `otros/`)
+3. **Actualizar las URLs** en `index.html` para apuntar a archivos locales
+4. **Mantener los nombres descriptivos** para SEO y accesibilidad
 
 ## Formatos Recomendados
 
