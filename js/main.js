@@ -1,4 +1,39 @@
 // Funcionalidad principal del sitio web Maskotas
+
+// Objeto de utilidades
+const Utils = {
+    // Función debounce para optimizar eventos
+    debounce(func, delay) {
+        let timeoutId;
+        return function (...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => func.apply(this, args), delay);
+        };
+    },
+    
+    // Función para lazy loading de imágenes
+    lazyLoadImages() {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback para navegadores sin soporte
+            images.forEach(img => img.classList.add('loaded'));
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Sitio web Maskotas cargado correctamente');
       // Inicializar funcionalidades
@@ -13,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupClipboardValidation();
     setupNetworkErrorHandling();
     setupBeforeUnloadProtection();
+    initGallery(); // Inicializar galería
 });
 
 // Navegación suave
@@ -1003,42 +1039,244 @@ function addValidationProgress() {
     updateProgress();
 }
 
-// Utility functions
-const Utils = {
-    // Debounce function para optimizar eventos
-    debounce: function(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    },
+// Funcionalidad de Galería
+function initGallery() {
+    const galeriaGrid = document.querySelector('.galeria-grid');
+    const filtros = document.querySelectorAll('.filtro-btn');
+    const galeriaItems = document.querySelectorAll('.galeria-item');
     
-    // Función para cargar imágenes lazy
-    lazyLoadImages: function() {
-        const images = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            });
+    if (!galeriaGrid || filtros.length === 0) return;
+    
+    // Inicializar filtros
+    setupGalleryFilters(filtros, galeriaItems);
+    
+    // Inicializar lightbox
+    setupLightbox(galeriaItems);
+    
+    // Configurar lazy loading para imágenes de galería
+    setupGalleryLazyLoading();
+    
+    // Agregar animaciones de entrada
+    setupGalleryAnimations(galeriaItems);
+}
+
+// Configurar filtros de galería
+function setupGalleryFilters(filtros, galeriaItems) {
+    filtros.forEach(filtro => {
+        filtro.addEventListener('click', function() {
+            const categoria = this.dataset.filtro;
+            
+            // Actualizar botón activo
+            filtros.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filtrar elementos
+            filterGalleryItems(galeriaItems, categoria);
         });
+    });
+}
+
+// Filtrar elementos de galería
+function filterGalleryItems(items, categoria) {
+    items.forEach(item => {
+        const itemCategoria = item.dataset.categoria;
         
-        images.forEach(img => imageObserver.observe(img));
-    }
-};
+        if (categoria === 'todos' || itemCategoria === categoria) {
+            item.classList.remove('hidden');
+            item.classList.add('visible');
+        } else {
+            item.classList.add('hidden');
+            item.classList.remove('visible');
+        }
+    });
+}
+
+// Configurar lightbox
+function setupLightbox(galeriaItems) {
+    // Crear modal overlay
+    const modalOverlay = createModalOverlay();
+    document.body.appendChild(modalOverlay);
+    
+    // Agregar event listeners a los elementos de galería
+    galeriaItems.forEach((item, index) => {
+        const verMasBtn = item.querySelector('.ver-mas');
+        const img = item.querySelector('img');
+        
+        if (verMasBtn) {
+            verMasBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(item, modalOverlay);
+            });
+        }
+        
+        if (img) {
+            img.addEventListener('click', () => {
+                openLightbox(item, modalOverlay);
+            });
+        }
+    });
+}
+
+// Crear modal overlay
+function createModalOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+            <img class="modal-image" src="" alt="">
+            <div class="modal-info">
+                <h3></h3>
+                <p></p>
+                <div class="modal-actions">
+                    <button class="btn-cita">Solicitar cita</button>
+                    <button class="btn-info">Más información</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            closeLightbox(overlay);
+        }
+    });
+    
+    // Cerrar modal con botón X
+    const closeBtn = overlay.querySelector('.modal-close');
+    closeBtn.addEventListener('click', () => {
+        closeLightbox(overlay);
+    });
+    
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeLightbox(overlay);
+        }
+    });
+    
+    return overlay;
+}
+
+// Abrir lightbox
+function openLightbox(item, modalOverlay) {
+    const img = item.querySelector('img');
+    const titulo = item.querySelector('.galeria-overlay h3').textContent;
+    const descripcion = item.querySelector('.galeria-overlay p').textContent;
+    
+    // Actualizar contenido del modal
+    const modalImg = modalOverlay.querySelector('.modal-image');
+    const modalTitulo = modalOverlay.querySelector('.modal-info h3');
+    const modalDescripcion = modalOverlay.querySelector('.modal-info p');
+    
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modalTitulo.textContent = titulo;
+    modalDescripcion.textContent = descripcion;
+    
+    // Mostrar modal
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Configurar botones de acción
+    setupModalActions(modalOverlay, titulo);
+}
+
+// Cerrar lightbox
+function closeLightbox(modalOverlay) {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Configurar acciones del modal
+function setupModalActions(modalOverlay, nombreMascota) {
+    const btnCita = modalOverlay.querySelector('.btn-cita');
+    const btnInfo = modalOverlay.querySelector('.btn-info');
+    
+    btnCita.onclick = () => {
+        closeLightbox(modalOverlay);
+        // Navegar a la sección de contacto con el asunto pre-seleccionado
+        document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+        
+        // Pre-seleccionar el asunto de cita veterinaria
+        setTimeout(() => {
+            const asuntoSelect = document.querySelector('#asunto');
+            if (asuntoSelect) {
+                asuntoSelect.value = 'cita-veterinaria';
+                asuntoSelect.dispatchEvent(new Event('change'));
+            }
+            
+            // Pre-llenar el mensaje
+            const mensajeTextarea = document.querySelector('#mensaje');
+            if (mensajeTextarea) {
+                mensajeTextarea.value = `Hola, me gustaría solicitar una cita para mi mascota similar a ${nombreMascota}. `;
+                mensajeTextarea.focus();
+            }
+        }, 500);
+    };
+    
+    btnInfo.onclick = () => {
+        showMessageEnhanced(
+            `Para más información sobre el cuidado de mascotas como ${nombreMascota}, no dudes en contactarnos.`,
+            'info',
+            5000
+        );
+    };
+}
+
+// Configurar lazy loading específico para galería
+function setupGalleryLazyLoading() {
+    const galeriaImages = document.querySelectorAll('.galeria-item img');
+    
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                
+                // Agregar clase de carga
+                img.classList.add('loading');
+                
+                // Simular tiempo de carga para demostración
+                setTimeout(() => {
+                    img.classList.remove('loading');
+                    img.classList.add('loaded');
+                }, 300);
+                
+                imageObserver.unobserve(img);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    galeriaImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// Configurar animaciones de galería
+function setupGalleryAnimations(galeriaItems) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationDelay = `${Math.random() * 0.5}s`;
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    galeriaItems.forEach(item => {
+        observer.observe(item);
+    });
+}
 
 // Exportar funciones para uso global si es necesario
 window.MaskotasApp = {
-    showMessage: showMessageEnhanced,
     showMessageEnhanced,
-    Utils
+    Utils,
+    initGallery
 };
