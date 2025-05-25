@@ -1,12 +1,19 @@
 # Maskotas 🐾
 
-Un sitio web moderno y responsivo dedicado al cuidado y bienestar de las mascotas.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+Un sitio web moderno y responsivo dedicado al cuidado y bienestar de las mascotas. Desarrollado con HTML5, CSS3 y JavaScript vanilla para ofrecer una experiencia de usuario óptima en todos los dispositivos.
 
 ## 📁 Estructura del Proyecto
 
 ```
 maskotas/
 ├── index.html          # Página principal
+├── LICENSE             # Licencia MIT
+├── .gitignore          # Archivos ignorados por Git
 ├── css/
 │   └── styles.css      # Estilos CSS del sitio
 ├── js/
@@ -53,12 +60,38 @@ maskotas/
 
 ## 📦 Cómo Usar
 
-1. **Clonar o descargar** el proyecto
-2. **Abrir** `index.html` en tu navegador
-3. **Personalizar** el contenido según tus necesidades
-4. **Agregar imágenes** en la carpeta `img/`
-5. **Modificar estilos** en `css/styles.css`
-6. **Añadir funcionalidad** en `js/main.js`
+### 🚀 Instalación Rápida
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/tu-usuario/maskotas.git
+   cd maskotas
+   ```
+
+2. **Abrir el proyecto**
+   - Abre `index.html` directamente en tu navegador, o
+   - Usar un servidor local (recomendado):
+   ```bash
+   # Con Python
+   python -m http.server 8000
+   
+   # Con Node.js (si tienes http-server instalado)
+   npx http-server
+   
+   # Con VS Code Live Server (extensión)
+   # Click derecho en index.html > "Open with Live Server"
+   ```
+
+3. **Visitar el sitio**
+   - Navegador directo: `file:///ruta/al/proyecto/index.html`
+   - Servidor local: `http://localhost:8000`
+
+### 🎨 Personalización
+
+1. **Personalizar contenido** en `index.html`
+2. **Agregar imágenes** en la carpeta `img/`
+3. **Modificar estilos** en `css/styles.css`
+4. **Añadir funcionalidad** en `js/main.js`
 
 ## 📋 Funcionalidades JavaScript
 
@@ -103,22 +136,51 @@ Edita las variables CSS en `:root` en el archivo `styles.css`:
 
 ## 🤝 Contribuir
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Añadir nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
+¡Las contribuciones son bienvenidas! Si quieres mejorar este proyecto:
+
+1. **Fork** el repositorio
+2. **Crea una rama** para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. **Commit** tus cambios (`git commit -am 'Añadir nueva funcionalidad'`)
+4. **Push** a la rama (`git push origin feature/nueva-funcionalidad`)
+5. **Crea un Pull Request**
+
+### 📋 Código de Conducta
+- Sé respetuoso con otros contribuidores
+- Sigue las convenciones de código existentes
+- Documenta tus cambios apropiadamente
+- Prueba tu código antes de enviar el PR
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+Este proyecto está bajo la **Licencia MIT**. Esto significa que puedes:
+
+- ✅ Usar comercialmente
+- ✅ Modificar
+- ✅ Distribuir
+- ✅ Uso privado
+
+Ver el archivo [`LICENSE`](LICENSE) para más detalles.
 
 ## 📞 Contacto
 
 - **Proyecto**: Maskotas
-- **Autor**: [Tu Nombre]
-- **Email**: [tu-email@ejemplo.com]
-- **GitHub**: [tu-usuario-github]
+- **Repositorio**: [GitHub](https://github.com/tu-usuario/maskotas)
+- **Issues**: [Reportar problemas](https://github.com/tu-usuario/maskotas/issues)
+- **Autor**: [Tu Nombre](https://github.com/tu-usuario)
+- **Email**: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
+
+## 📈 Estado del Proyecto
+
+- **Versión**: 1.0.0
+- **Estado**: ✅ Estable
+- **Última actualización**: Mayo 2025
+- **Mantenimiento**: Activo
+
+## 🙏 Agradecimientos
+
+- Inspirado en las mejores prácticas de desarrollo web moderno
+- Iconos y recursos de la comunidad open source
+- Gracias a todos los contribuidores del proyecto
 
 ---
 

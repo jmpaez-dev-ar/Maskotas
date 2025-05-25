@@ -1,0 +1,44 @@
+# Dependencias de Node.js
+node_modules/
+
+# Archivos de distribución/build
+dist/
+
+# Archivos de log
+*.log
+
+# Archivos del sistema macOS
+.DS_Store
+
+# Archivos del sistema Windows
+Thumbs.db
+Desktop.ini
+
+# Archivos de entornos virtuales (Python)
+venv/
+env/
+.env
+
+# Archivos de configuración del IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Cache de npm
+.npm
+npm-debug.log*
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
