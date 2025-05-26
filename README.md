@@ -446,4 +446,8 @@ Este proyecto **Maskotas** demuestra de manera irrefutable que la combinación d
 
 ---
 
+## ⚖️ Descargo de Responsabilidad
+
+Este proyecto se proporciona exclusivamente con fines académicos. Todos los nombres, imágenes, videos y marcas comerciales son propiedad de sus respectivos dueños. No se asume ninguna garantía ni responsabilidad por problemas, fallas, errores u omisiones. Además, es importante destacar que el proyecto podría estar incompleto, y el autor no se compromete a proporcionar la versión completa. No se busca ningún uso comercial ni infracción de derechos de autor.
+
 > 💡 **¿Interesado en replicar estos resultados?** Este proyecto completo está disponible como código abierto para que puedas explorar, aprender y experimentar con las mismas herramientas de IA que hicieron posible su creación.
